@@ -1,0 +1,27 @@
+#include <iostream>
+using namespace std;
+int main(){
+    int c[10];
+    cout<<"输入十个成绩:";
+    for(int i = 0;i < 10;i++){
+        cin>>c[i];
+    }
+ int temp,p;
+for(int i=0;i<10-1;i++){
+       p=i;
+for(int j=i+1;j<10;j++){
+if(c[p]>c[j]){
+   p=j;
+}
+}
+   if(p != i){ temp=c[p];
+    c[p]=c[i];
+    c[i]=temp;
+   }
+}
+        cout<<endl;
+        cout<<"排序后：";
+        for(int i = 0;i < 10;i++){
+            cout<<c[9-i]<<"\n";
+        }
+} 
