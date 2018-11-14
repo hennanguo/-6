@@ -1,0 +1,24 @@
+#include <iostream>
+using namespace std;
+double pvg(int x,int y,int z){
+    return (x+y+z)/3;
+}
+int main(){
+    int a[5][4]{{89,78,56},{88,99,100},{72,80,61},{60,70,75}};
+    for(int i = 0;i < 5;i++ ){
+        a[i][3]=pvg(a[i][0],a[i][1],a[i][2]);
+    }
+    for(int j = 0;j < 3;j++ ){
+        a[4][j]=pvg(a[0][j],a[1][j],a[2][j]);
+    }
+    for(int i = 0;i < 5;i++){
+       if(i == 0)     cout<<"\t\t"<<"课程1"<<"\t\t"<<"课程2"<<"\t\t"<<"课程3"<<"\t\t"<<"个人平均分"<<endl;
+            for(int j = 0;j < 4;j++){
+                if(j == 0 && i < 4)cout <<"学生"<<i+1;
+                if(j == 0 && i == 4) cout<<"课程平均分";
+                if(i < 4)  cout<<"\t\t"<<a[i][j];
+                else if(j == 0) cout<<"      "<<a[i][j];
+                else cout<<"\t\t"<<a[i][j];
+            }
+            cout<<"\n";
+}
