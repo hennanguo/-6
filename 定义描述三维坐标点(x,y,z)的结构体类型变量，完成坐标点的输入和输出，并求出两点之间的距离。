@@ -1,0 +1,43 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+struct coordinate{
+    float x;
+    float y;
+    float z;
+};
+void input(coordinate &posz)
+{
+    cout<<"输入x、y和z：";
+    cin>>posz.x>>posz.y>>posz.z;
+}
+void output(coordinate posz)
+{
+    cout<<'\t'<<"("<<posz.x<<'\t'<<posz.y<<'\t'<<posz.z<<")"<<"\n";
+}
+float distant(coordinate poszs [],int a,int b){
+    float s1,s2,s3=0;
+    s1 = (poszs[a].x-poszs[b].x)*(poszs[a].x-poszs[b].x);
+    s2 = (poszs[a].y-poszs[b].y)*(poszs[a].y-poszs[b].y);
+    s3 = (poszs[a].z-poszs[b].z)*(poszs[a].z-poszs[b].z);
+    return sqrt(s1+s2+s3);
+}
+int main(){
+ int n;
+    cout<<"输入一个n:";
+    cin>>n;
+    coordinate poszs[n];
+    for(int i = 0; i < n; i++)
+    {
+        input(poszs[i]);
+    }
+     for(int i = 0; i < n; i++)
+    {
+        output(poszs[i]);
+    }
+    cout<<"求任意两个点间距离，输入数的序号，序号为输入的次序-1:"<<endl;
+    int a,b;
+    cin>>a>>b;
+    float s;s=distant(poszs,a,b);
+    cout<<s;
+}
