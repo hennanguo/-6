@@ -1,0 +1,27 @@
+#include <iostream>
+using namespace std;
+enum colors {red,blue,green};
+void show(colors color){
+switch(color){
+    case red: cout<<"red";
+        break;
+    case blue: cout<<"blue";
+    break;
+    case green: cout<<"green";
+    break;
+    cout<<'\t';
+}
+}
+int main(){
+    colors col1,col2,col3;
+    for(col1=red;col1<=green;col1=colors(int(col1)+1)){
+        for(col2=red;col2<=green;col2=colors(int(col2)+1)){
+                for(col3=red;col3<=green;col3=colors(int(col3)+1)){
+                    show(col1);
+                    show(col2);
+                    show(col3);
+                    cout<<'\n';
+                }
+
+        }
+    }
