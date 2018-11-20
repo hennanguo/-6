@@ -1,0 +1,26 @@
+#include <iostream>
+using namespace std;
+struct date{
+    int year;
+    int month;
+    int day;
+};
+void input(date &dat)
+{
+    cout<<"输入年、月和日：";
+    cin>>dat.year>>dat.month>>dat.day;
+}
+int main(){
+    date dat;
+    input(dat);
+    cout<<dat.year<<" "<<dat.month<<" "<<dat.day<<endl;
+    int d[12]={31,28,31,30,31,30,31,31,30,31,30,31},sum;
+            sum=0;
+            for(int i=0;i<dat.month-1;i++)
+            sum+=d[i];
+            sum+=dat.day;
+
+            if(dat.month>=3&&(dat.year%400==0||dat.year%4==0&&dat.year%100!=0))
+            sum++;
+            cout<<sum;
+}
