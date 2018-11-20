@@ -1,0 +1,32 @@
+习题8.7，已知今天是星期几，输出100天后是星期几，用枚举类型实现。
+#include <iostream>
+using namespace std;
+int main()
+{
+    enum weekday{monday,tuesday,wednesday,thursday,friday,saturday,sunday} day;
+ int today,n;
+ cout<<"今天是星期几（输入数字，星期一为1，以此类推）？";
+ cin>>today;
+ if(today>=1&&today<=7)
+ {
+  day=(enum weekday)((today-1+100%7)%7);
+  cout<<"100天后是";
+ }
+ else
+ {
+  cout<<"日期输入错误！";
+ }
+ switch(day)
+    {
+        case monday:cout<<"星期一"; break;
+        case tuesday:cout<<"星期二"; break;
+        case wednesday:cout<<"星期三"; break;
+  case thursday:cout<<"星期四"; break;
+  case friday:cout<<"星期五"; break;
+  case saturday:cout<<"星期六"; break;
+  case sunday:cout<<"星期日"; break;
+        default:cout<<"日期计算出现错误！";break;
+    }
+ cout<<endl;
+ return 0;
+}
