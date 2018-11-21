@@ -1,0 +1,163 @@
+#include <iostream>
+#include<string.h>
+#include <fstream>
+using namespace std;
+ struct student{
+	char num[12];
+	char name[20];
+	char sex;
+	char date[20];
+	char address[30];
+	char QQ[11];
+	char phone[20];
+	char email[30];
+};
+void input(student &std){
+		cin>>std.num>>std.name>>std.sex>>std.date>>std.address>>std.QQ>>std.phone>>std.email;
+}
+void output(student std){
+	cout<<std.num<<'\t'<<std.name<<'\t'<<std.sex<<'\t'<<std.date<<'\t'<<std.address<<'\t'<<std.QQ<<'\t'<<std.phone<<'\t'<<std.email<<endl;
+}
+void fuzzyQuery(student stds[]){
+char a[20];
+cout<<"请输入关键字：";
+cin>>a;
+cout<<endl;
+int j,k=0;
+int i=-1;
+
+
+for(j=0;j<40;j++)
+{
+if(strstr(stds[j].name,a)!=NULL)
+{
+cout<<"学号："<<stds[j].num<<endl;
+cout<<"姓名："<<stds[j].name<<endl;
+cout<<"性别："<<stds[j].sex<<endl;
+cout<<"出生日期："<<stds[j].date<<endl;
+cout<<"家庭住址："<<stds[j].address<<endl;
+cout<<"QQ："<<stds[j].QQ<<endl;
+cout<<"电话："<<stds[j].phone<<endl;
+cout<<"邮箱："<<stds[j].email<<endl;
+cout<<" "<<endl;
+i=j;
+}
+if(i == -1)
+{
+cout<<"模糊查找失败！请输入其他关键字！"<<endl;
+cout<<" "<<endl;
+}
+}
+}
+void nameSearch(student stds[])
+{
+cout<<"输入你要查找的学生的姓名：";
+char a[20];
+cin>>a;
+int i,j;
+int k=0;
+for(i=0;i<40;i++){
+if(strcmp(stds[i].name,a)==0)
+{
+    j=i;
+    k++;
+}
+}
+if(k==1)
+{
+cout<<"学号："<<stds[j].num<<endl;
+cout<<"姓名："<<stds[j].name<<endl;
+cout<<"性别："<<stds[j].sex<<endl;
+cout<<"出生日期："<<stds[j].date<<endl;
+cout<<"家庭住址："<<stds[j].address<<endl;
+cout<<"QQ："<<stds[j].QQ<<endl;
+cout<<"电话："<<stds[j].phone<<endl;
+cout<<"邮箱："<<stds[j].email<<endl;
+cout<<" "<<endl;
+}
+else
+{
+cout<<"你要查找的学生不存在！请确认姓名是否输入有误！"<<endl;
+cout<<" --------------------------------------------- "<<endl;
+}
+}
+void cpy(student stds[]){
+cout<<"输入你要查找的学生的电话：";
+char a[20];
+cin>>a;
+int i,j;
+int k=0;
+for(i=0;i<40;i++){
+if(strcmp(stds[i].phone,a)==0)
+{
+    j=i;
+    k++;
+}
+}
+if(k==1)
+{cout<<"是"<<endl;
+}
+else{
+cout<<"你要查找的学生不存在！请确认姓名是否输入有误！"<<endl;
+cout<<" --------------------------------------------- "<<endl;
+}
+}
+void modify(student stds[]){
+    cout<<"输入所要修改的学生姓名和新电话号码："<<endl;
+    char a[20],b[20];
+    cin>>a>>b;
+    for(int i=0;i<40;i++){
+    if(strcmp(stds[i].name,a)==0)
+{  strcpy(stds[i].phone,b);}}
+}
+int main(){
+    int x;student stds[40];int n;
+do{
+cout<<"学生信息管理系统"<<endl;
+cout<<"1.手动输入信息"<<endl;
+cout<<"2.文件导入数据"<<endl;
+cout<<"3.名字查询"<<endl;
+cout<<"4.输出表格"<<endl;
+cout<<"5.模糊查询"<<endl;
+cout<<"6.电话查询是否本班"<<endl;
+cout<<"7.修改手机号功能"<<endl;
+cout<<"8.将修改后的数组数据保存到文本文件tongxunlu-new.txt"<<endl;
+cout<<"9.退出"<<endl;
+cin>>x;
+switch(x)
+{   case 1:
+	cout<<"输入学生数:";
+	cin>>n;
+	cout<<"依次输入学生的学号、姓名、性别、出生日期、家庭住址、QQ号、手机号码及email地址:";
+	for(int i = 0;i < n;i++){
+	input(stds[i]);}
+	cout<<endl;break;
+    case 2:
+        cout<<"输入学生数：";
+        cin>>n;
+        {
+    int m;m=0;
+    fstream in("a.txt", ios::in);
+    if(!in.is_open())
+    {
+        cout << "Error: opening file fail" << endl;
+    }
+    while(!in.eof() && m < n)
+   {
+        in >> stds[m].num>>stds[m].name>>stds[m].sex>>stds[m].date>>stds[m].address>>stds[m].QQ>>stds[m].phone>>stds[m].email;
+        m++;
+    }
+	cout<<endl;
+    break;}
+    case 3: nameSearch(stds);break;
+    case 4:for(int i = 0;i < n;i++){
+            output(stds[i]);}break;
+    case 5:  fuzzyQuery(stds);break;
+    case 6:cpy(stds);break;
+    case 7:modify(stds);break;
+    case 8:ofstream outfile("tongxunlu-new.txt",ios::app);
+	for(int i = 0;i < n;i++){
+	outfile <<stds[i].num<<'\t'<<stds[i].name<<'\t'<<stds[i].sex<<'\t'<<stds[i].date<<'\t'<<stds[i].address<<'\t'<<stds[i].QQ<<'\t'<<stds[i].phone<<'\t'<<stds[i].email<<endl;
+        }
+}}while(x>=1&&x<=8);
+}
